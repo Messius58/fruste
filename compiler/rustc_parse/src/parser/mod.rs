@@ -1419,7 +1419,7 @@ impl<'a> Parser<'a> {
     pub fn parse_visibility(&mut self, fbt: FollowedByType) -> PResult<'a, Visibility> {
         maybe_whole!(self, NtVis, |vis| vis.into_inner());
 
-        if !self.eat_keyword(kw::Pub) {
+        if !self.eat_keyword(kw::Pub) /*|| !self.eat_keyword(kw::Public)*/ {
             // We need a span for our `Spanned<VisibilityKind>`, but there's inherently no
             // keyword to grab a span from for inherited visibility; an empty span at the
             // beginning of the current token would seem to be the "Schelling span".

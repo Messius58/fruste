@@ -633,7 +633,7 @@ impl<BorrowType: marker::BorrowType, K, V> NodeRef<BorrowType, K, V, marker::Lea
         loop {
             match node.force() {
                 Leaf(leaf) => return leaf.first_edge(),
-                Internal(internal) => node = internal.first_edge().descend(),
+                Internal(interne) => node = interne.first_edge().descend(),
             }
         }
     }
@@ -646,7 +646,7 @@ impl<BorrowType: marker::BorrowType, K, V> NodeRef<BorrowType, K, V, marker::Lea
         loop {
             match node.force() {
                 Leaf(leaf) => return leaf.last_edge(),
-                Internal(internal) => node = internal.last_edge().descend(),
+                Internal(interne) => node = interne.last_edge().descend(),
             }
         }
     }
@@ -668,9 +668,9 @@ impl<'a, K: 'a, V: 'a> NodeRef<marker::Immut<'a>, K, V, marker::LeafOrInternal> 
     {
         match self.force() {
             Leaf(leaf) => visit(Position::Leaf(leaf)),
-            Internal(internal) => {
-                visit(Position::Internal(internal));
-                let mut edge = internal.first_edge();
+            Internal(interne) => {
+                visit(Position::Internal(interne));
+                let mut edge = interne.first_edge();
                 loop {
                     edge = match edge.descend().force() {
                         Leaf(leaf) => {
@@ -683,9 +683,9 @@ impl<'a, K: 'a, V: 'a> NodeRef<marker::Immut<'a>, K, V, marker::LeafOrInternal> 
                                 Err(_) => return,
                             }
                         }
-                        Internal(internal) => {
-                            visit(Position::Internal(internal));
-                            internal.first_edge()
+                        Internal(interne) => {
+                            visit(Position::Internal(interne));
+                            interne.first_edge()
                         }
                     }
                 }

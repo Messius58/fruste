@@ -34,14 +34,14 @@ use super::{IntErrorKind, ParseIntError};
     issue = "none"
 )]
 #[const_trait]
-pub unsafe trait ZeroablePrimitive: Sized + Copy + private::Sealed {
+pub unsafe trait ZeroablePrimitive: Sized + Copy + privee::Sealed {
     #[doc(hidden)]
     type NonZeroInner: Sized + Copy;
 }
 
 macro_rules! impl_zeroable_primitive {
     ($($NonZeroInner:ident ( $primitive:ty )),+ $(,)?) => {
-        mod private {
+        mod privee {
             #[unstable(
                 feature = "nonzero_internals",
                 reason = "implementation detail which may disappear or be replaced at any time",
@@ -70,7 +70,7 @@ macro_rules! impl_zeroable_primitive {
                 reason = "implementation detail which may disappear or be replaced at any time",
                 issue = "none"
             )]
-            impl const private::Sealed for $primitive {}
+            impl const privee::Sealed for $primitive {}
 
             #[unstable(
                 feature = "nonzero_internals",
@@ -78,7 +78,7 @@ macro_rules! impl_zeroable_primitive {
                 issue = "none"
             )]
             unsafe impl const ZeroablePrimitive for $primitive {
-                type NonZeroInner = private::$NonZeroInner;
+                type NonZeroInner = privee::$NonZeroInner;
             }
         )+
     };

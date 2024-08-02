@@ -1,14 +1,14 @@
 #![crate_type = "lib"]
 //@ compile-flags:-g
 
-pub use private::P;
+pub use privee::P;
 
 #[derive(Copy, Clone)]
 pub struct S {
     p: P,
 }
 
-mod private {
+mod privee {
     #[derive(Copy, Clone)]
     pub struct P {
         p: i32,
@@ -16,4 +16,4 @@ mod private {
     pub const THREE: P = P { p: 3 };
 }
 
-pub static A: S = S { p: private::THREE };
+pub static A: S = S { p: privee::THREE };

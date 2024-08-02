@@ -573,6 +573,7 @@ impl Token {
                 kw::Struct,
                 kw::Enum,
                 kw::Pub,
+                //kw::Public,
                 kw::Trait,
                 kw::Extern,
                 kw::Impl,

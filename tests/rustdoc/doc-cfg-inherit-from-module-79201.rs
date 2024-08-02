@@ -22,7 +22,7 @@ pub mod public {
 }
 
 #[doc(cfg(feature = "foo-private-mod"))]
-mod private {
+mod privee {
     impl crate::Foo for u16 {}
 }
 

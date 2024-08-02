@@ -3,9 +3,9 @@
 use std::ops::Deref;
 
 // @hasraw search-index.js Foo
-pub use private::Foo;
+pub use privee::Foo;
 
-mod private {
+mod privee {
     pub struct Foo;
     impl Foo {
         pub fn test_method() {} // @hasraw - test_method

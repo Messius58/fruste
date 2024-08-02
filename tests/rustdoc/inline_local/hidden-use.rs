@@ -1,4 +1,4 @@
-mod private {
+mod privee {
     pub struct Foo {}
 }
 
@@ -7,4 +7,4 @@ mod private {
 // @!hasraw - 'Foo'
 // @!has hidden_use/struct.Foo.html
 #[doc(hidden)]
-pub use private::Foo;
+pub use privee::Foo;

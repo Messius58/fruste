@@ -3,11 +3,11 @@
 
 //@ check-pass
 
-mod private {
+mod privee {
     /// [core::str::FromStr]
     pub struct ReachableButNotExported;
 }
 
-pub fn foo() -> private::ReachableButNotExported {
-    private::ReachableButNotExported
+pub fn foo() -> privee::ReachableButNotExported {
+    privee::ReachableButNotExported
 }

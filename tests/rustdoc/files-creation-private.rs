@@ -6,12 +6,12 @@
 
 // @!has "foo/priv/index.html"
 // @!has "foo/priv/struct.Foo.html"
-mod private {
+mod privee {
     pub struct Foo;
 }
 
 // @has "foo/struct.Bar.html"
-pub use crate::private::Foo as Bar;
+pub use crate::privee::Foo as Bar;
 
 // @!has "foo/foo/index.html"
 mod foo {

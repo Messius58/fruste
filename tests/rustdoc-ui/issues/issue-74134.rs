@@ -28,7 +28,7 @@ pub struct Public {
 // The following cases are identical to the ones above, except that they are in a private
 // module. Thus they all fall into cases 3 and 4 and should not produce a warning.
 
-mod private {
+mod privee {
     pub struct Public {
         /// [`super::PublicType`]
         /// [`super::PrivateType`]

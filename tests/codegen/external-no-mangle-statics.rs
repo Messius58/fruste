@@ -22,7 +22,7 @@ pub static C: u8 = 0;
 #[no_mangle]
 pub static mut D: u8 = 0;
 
-mod private {
+mod privee {
     // CHECK: @E = {{(dso_local )?}}local_unnamed_addr constant
     #[no_mangle]
     static E: u8 = 0;

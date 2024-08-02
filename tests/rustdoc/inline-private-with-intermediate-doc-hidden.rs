@@ -11,13 +11,13 @@
 // @has - '//*[@id="main-content"]//a[@href="struct.Reexport.html"]' 'Reexport'
 // @has - '//*[@id="main-content"]//*[@class="desc docblock-short"]' 'Visible. Original.'
 
-mod private {
+mod privee {
     /// Original.
     pub struct Bar3;
 }
 
 /// Hidden.
 #[doc(hidden)]
-pub use crate::private::Bar3;
+pub use crate::privee::Bar3;
 /// Visible.
 pub use self::Bar3 as Reexport;

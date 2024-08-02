@@ -242,14 +242,14 @@ impl<K: Clone, V: Clone, A: Allocator + Clone> Clone for BTreeMap<K, V, A> {
 
                     out_tree
                 }
-                Internal(internal) => {
+                Internal(interne) => {
                     let mut out_tree =
-                        clone_subtree(internal.first_edge().descend(), alloc.clone());
+                        clone_subtree(interne.first_edge().descend(), alloc.clone());
 
                     {
                         let out_root = out_tree.root.as_mut().unwrap();
                         let mut out_node = out_root.push_internal_level(alloc.clone());
-                        let mut in_edge = internal.first_edge();
+                        let mut in_edge = interne.first_edge();
                         while let Ok(kv) = in_edge.right_kv() {
                             let (k, v) = kv.into_kv();
                             in_edge = kv.right_edge();

@@ -26,13 +26,13 @@ impl<T, F> Fold<F> for Cons<T>
 // 1
 where
     T: Fold<F>,
-    private::Is<T>: private::NotNil,
+    privee::Is<T>: privee::NotNil,
 {
 }
 
 impl<F> Fold<F> for Test {} // 2
 
-mod private {
+mod privee {
     use crate::Nil;
 
     pub struct Is<T>(T);

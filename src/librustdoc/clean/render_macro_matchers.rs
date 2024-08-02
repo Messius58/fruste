@@ -191,6 +191,7 @@ fn usually_needs_space_between_keyword_and_open_delim(symbol: Symbol, span: Span
 
         // No space, as in `pub(crate) type T;`
         kw::Pub => false,
+        //kw::Internal => false,
 
         // No space for keywords that can end an expression, as in `fut.await()`
         // where fut's Output type is `fn()`.

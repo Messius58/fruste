@@ -65,13 +65,13 @@ macro_rules! compile_error { () => {} }
 //- /lib.rs crate:lib deps:core
 use core::{panic, concat};
 
-mod private {
+mod privee {
     pub use core::concat;
 }
 
 macro_rules! m {
     () => {
-        panic!(concat!($crate::private::concat!("")));
+        panic!(concat!($crate::privee::concat!("")));
     };
 }
 

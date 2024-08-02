@@ -122,7 +122,7 @@ pub mod glob_reexport {
     pub use crate::module::*;
 }
 
-mod private {
+mod privee {
     /// Original.
     pub struct Bar3;
 }
@@ -139,5 +139,5 @@ pub mod doc_hidden_reexport {
     pub use self::Bar3 as Reexport;
     /// Hidden.
     #[doc(hidden)]
-    pub use crate::private::Bar3;
+    pub use crate::privee::Bar3;
 }

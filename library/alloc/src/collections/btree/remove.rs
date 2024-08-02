@@ -87,9 +87,9 @@ impl<'a, K: 'a, V: 'a> Handle<NodeRef<marker::Mut<'a>, K, V, marker::Internal>, 
 
         // The internal node may have been stolen from or merged. Go back right
         // to find where the original KV ended up.
-        let mut internal = unsafe { left_hole.next_kv().ok().unwrap_unchecked() };
-        let old_kv = internal.replace_kv(left_kv.0, left_kv.1);
-        let pos = internal.next_leaf_edge();
+        let mut interne = unsafe { left_hole.next_kv().ok().unwrap_unchecked() };
+        let old_kv = interne.replace_kv(left_kv.0, left_kv.1);
+        let pos = interne.next_leaf_edge();
         (old_kv, pos)
     }
 }

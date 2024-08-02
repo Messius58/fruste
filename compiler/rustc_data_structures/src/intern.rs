@@ -5,7 +5,7 @@ use std::hash::{Hash, Hasher};
 use std::ops::Deref;
 use std::ptr;
 
-mod private {
+mod privee {
     #[derive(Clone, Copy, Debug)]
     pub struct PrivateZst;
 }
@@ -22,7 +22,7 @@ mod private {
 /// but you can only construct a `Interned` with `new_unchecked`, and not
 /// directly.
 #[rustc_pass_by_value]
-pub struct Interned<'a, T>(pub &'a T, pub private::PrivateZst);
+pub struct Interned<'a, T>(pub &'a T, pub privee::PrivateZst);
 
 impl<'a, T> Interned<'a, T> {
     /// Create a new `Interned` value. The value referred to *must* be interned
@@ -32,7 +32,7 @@ impl<'a, T> Interned<'a, T> {
     /// behaviour but will not affect memory safety.
     #[inline]
     pub const fn new_unchecked(t: &'a T) -> Self {
-        Interned(t, private::PrivateZst)
+        Interned(t, privee::PrivateZst)
     }
 }
 

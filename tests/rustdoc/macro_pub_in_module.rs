@@ -45,7 +45,7 @@ pub mod inner {
     }
     // @has krate/inner/macro.renamed.html
     // @!has krate/macro.renamed.html
-    pub use private::m as renamed;
+    pub use privee::m as renamed;
 
     mod private2 {
         // @!has krate/macro.m2.html

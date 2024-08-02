@@ -4,14 +4,14 @@
 // https://github.com/rust-lang/rust/issues/63063#issuecomment-1360053614
 
 // library
-mod private {
+mod privee {
     pub struct Private;
     pub trait Trait {
         fn dont_define_this(_private: Private) {}
     }
 }
 
-use private::Trait;
+use privee::Trait;
 
 // downstream
 type MyPrivate = impl Sized;

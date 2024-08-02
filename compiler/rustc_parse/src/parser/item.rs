@@ -2409,7 +2409,7 @@ impl<'a> Parser<'a> {
         // `pub` is added in case users got confused with the ordering like `async pub fn`,
         // only if it wasn't preceded by `default` as `default pub` is invalid.
         let quals: &[Symbol] = if check_pub {
-            &[kw::Pub, kw::Gen, kw::Const, kw::Async, kw::Unsafe, kw::Safe, kw::Extern]
+            &[kw::Pub, kw::Public, kw::Gen, kw::Const, kw::Async, kw::Unsafe, kw::Safe, kw::Extern]
         } else {
             &[kw::Gen, kw::Const, kw::Async, kw::Unsafe, kw::Safe, kw::Extern]
         };
@@ -2441,7 +2441,7 @@ impl<'a> Parser<'a> {
                 && (self.look_ahead(2, |t| t.is_keyword_case(kw::Fn, case)) ||
                     // this branch is only for better diagnostic in later, `pub` is not allowed here
                     (self.may_recover()
-                        && self.look_ahead(2, |t| t.is_keyword(kw::Pub))
+                        && self.look_ahead(2, |t| t.is_keyword(kw::Pub) || t.is_keyword(kw::Public))
                         && self.look_ahead(3, |t| t.is_keyword_case(kw::Fn, case))))
     }
 
@@ -2601,7 +2601,7 @@ impl<'a> Parser<'a> {
                         }
                     }
                     // Recover incorrect visibility order such as `async pub`
-                    else if self.check_keyword(kw::Pub) {
+                    else if self.check_keyword(kw::Pub) /*|| self.check_keyword(kw::Public)*/ {
                         let sp = sp_start.to(self.prev_token.span);
                         if let Ok(snippet) = self.span_to_snippet(sp) {
                             let current_vis = match self.parse_visibility(FollowedByType::No) {

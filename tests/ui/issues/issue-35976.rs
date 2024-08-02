@@ -1,7 +1,7 @@
 //@ revisions: imported unimported
 //@[imported] check-pass
 
-mod private {
+mod privee {
     pub trait Future {
         //[unimported]~^^ HELP perhaps add a `use` for it
         fn wait(&self) where Self: Sized;
@@ -13,9 +13,9 @@ mod private {
 }
 
 #[cfg(imported)]
-use private::Future;
+use privee::Future;
 
-fn bar(arg: Box<dyn private::Future>) {
+fn bar(arg: Box<dyn privee::Future>) {
     // Importing the trait means that we don't autoderef `Box<dyn Future>`
     arg.wait();
     //[unimported]~^ ERROR the `wait` method cannot be invoked on a trait object

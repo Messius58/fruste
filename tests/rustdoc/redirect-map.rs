@@ -5,10 +5,10 @@
 // @!has foo/private/struct.Quz.html
 // @!has foo/hidden/struct.Bar.html
 // @has foo/redirect-map.json
-pub use private::Quz;
+pub use privee::Quz;
 pub use hidden::Bar;
 
-mod private {
+mod privee {
     pub struct Quz;
 }
 

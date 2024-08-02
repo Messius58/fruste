@@ -19,7 +19,7 @@ impl UnusedTrait for UnusedStruct {
     }
 }
 
-mod private {
+mod privee {
     #[derive(Debug)]
     struct UnusedStruct; //~ ERROR struct `UnusedStruct` is never constructed
 }

@@ -1,7 +1,7 @@
-pub use private::Quz;
+pub use privee::Quz;
 pub use hidden::Bar;
 
-mod private {
+mod privee {
     pub struct Quz;
 }
 

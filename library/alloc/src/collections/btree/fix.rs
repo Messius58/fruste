@@ -98,9 +98,9 @@ impl<K, V> Root<K, V> {
     /// must be prepared to have up to MIN_LEN elements stolen.
     pub fn fix_right_border_of_plentiful(&mut self) {
         let mut cur_node = self.borrow_mut();
-        while let Internal(internal) = cur_node.force() {
+        while let Internal(interne) = cur_node.force() {
             // Check if right-most child is underfull.
-            let mut last_kv = internal.last_kv().consider_for_balancing();
+            let mut last_kv = interne.last_kv().consider_for_balancing();
             debug_assert!(last_kv.left_child_len() >= MIN_LEN * 2);
             let right_child_len = last_kv.right_child_len();
             if right_child_len < MIN_LEN {

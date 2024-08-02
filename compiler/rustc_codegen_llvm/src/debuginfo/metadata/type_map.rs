@@ -23,11 +23,11 @@ use crate::{
 
 use super::{unknown_file_metadata, SmallVec, UNKNOWN_LINE_NUMBER};
 
-mod private {
+mod privee {
     use rustc_macros::HashStable;
 
     // This type cannot be constructed outside of this module because
-    // it has a private field. We make use of this in order to prevent
+    // it has a privee field. We make use of this in order to prevent
     // `UniqueTypeId` from being constructed directly, without asserting
     // the preconditions.
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, HashStable)]
@@ -44,27 +44,27 @@ mod private {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, HashStable)]
 pub(super) enum UniqueTypeId<'tcx> {
     /// The ID of a regular type as it shows up at the language level.
-    Ty(Ty<'tcx>, private::HiddenZst),
+    Ty(Ty<'tcx>, privee::HiddenZst),
     /// The ID for the single DW_TAG_variant_part nested inside the top-level
     /// DW_TAG_structure_type that describes enums and coroutines.
-    VariantPart(Ty<'tcx>, private::HiddenZst),
+    VariantPart(Ty<'tcx>, privee::HiddenZst),
     /// The ID for the artificial struct type describing a single enum variant.
-    VariantStructType(Ty<'tcx>, VariantIdx, private::HiddenZst),
+    VariantStructType(Ty<'tcx>, VariantIdx, privee::HiddenZst),
     /// The ID for the additional wrapper struct type describing an enum variant in CPP-like mode.
-    VariantStructTypeCppLikeWrapper(Ty<'tcx>, VariantIdx, private::HiddenZst),
+    VariantStructTypeCppLikeWrapper(Ty<'tcx>, VariantIdx, privee::HiddenZst),
     /// The ID of the artificial type we create for VTables.
-    VTableTy(Ty<'tcx>, Option<PolyExistentialTraitRef<'tcx>>, private::HiddenZst),
+    VTableTy(Ty<'tcx>, Option<PolyExistentialTraitRef<'tcx>>, privee::HiddenZst),
 }
 
 impl<'tcx> UniqueTypeId<'tcx> {
     pub fn for_ty(tcx: TyCtxt<'tcx>, t: Ty<'tcx>) -> Self {
         debug_assert_eq!(t, tcx.normalize_erasing_regions(ParamEnv::reveal_all(), t));
-        UniqueTypeId::Ty(t, private::HiddenZst)
+        UniqueTypeId::Ty(t, privee::HiddenZst)
     }
 
     pub fn for_enum_variant_part(tcx: TyCtxt<'tcx>, enum_ty: Ty<'tcx>) -> Self {
         debug_assert_eq!(enum_ty, tcx.normalize_erasing_regions(ParamEnv::reveal_all(), enum_ty));
-        UniqueTypeId::VariantPart(enum_ty, private::HiddenZst)
+        UniqueTypeId::VariantPart(enum_ty, privee::HiddenZst)
     }
 
     pub fn for_enum_variant_struct_type(
@@ -73,7 +73,7 @@ impl<'tcx> UniqueTypeId<'tcx> {
         variant_idx: VariantIdx,
     ) -> Self {
         debug_assert_eq!(enum_ty, tcx.normalize_erasing_regions(ParamEnv::reveal_all(), enum_ty));
-        UniqueTypeId::VariantStructType(enum_ty, variant_idx, private::HiddenZst)
+        UniqueTypeId::VariantStructType(enum_ty, variant_idx, privee::HiddenZst)
     }
 
     pub fn for_enum_variant_struct_type_wrapper(
@@ -82,7 +82,7 @@ impl<'tcx> UniqueTypeId<'tcx> {
         variant_idx: VariantIdx,
     ) -> Self {
         debug_assert_eq!(enum_ty, tcx.normalize_erasing_regions(ParamEnv::reveal_all(), enum_ty));
-        UniqueTypeId::VariantStructTypeCppLikeWrapper(enum_ty, variant_idx, private::HiddenZst)
+        UniqueTypeId::VariantStructTypeCppLikeWrapper(enum_ty, variant_idx, privee::HiddenZst)
     }
 
     pub fn for_vtable_ty(
@@ -98,7 +98,7 @@ impl<'tcx> UniqueTypeId<'tcx> {
             implemented_trait,
             tcx.normalize_erasing_regions(ParamEnv::reveal_all(), implemented_trait)
         );
-        UniqueTypeId::VTableTy(self_type, implemented_trait, private::HiddenZst)
+        UniqueTypeId::VTableTy(self_type, implemented_trait, privee::HiddenZst)
     }
 
     /// Generates a string version of this [UniqueTypeId], which can be used as the `UniqueId`

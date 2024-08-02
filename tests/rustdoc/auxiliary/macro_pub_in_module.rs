@@ -9,5 +9,5 @@ pub mod some_module {
         pub macro external_macro() {}
     }
 
-    pub use private::external_macro;
+    pub use privee::external_macro;
 }

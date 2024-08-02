@@ -3,7 +3,7 @@ pub struct Foo;
 pub trait Woof {}
 pub trait Bark {}
 
-mod private {
+mod privee {
     // should be shown
     impl ::Woof for ::Foo {}
 

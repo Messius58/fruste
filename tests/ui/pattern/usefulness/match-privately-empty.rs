@@ -3,7 +3,7 @@
 #![cfg_attr(min_exhaustive_patterns, feature(min_exhaustive_patterns))]
 #![feature(never_type)]
 
-mod private {
+mod privee {
     pub struct Private {
         _bot: !,
         pub misc: bool,
@@ -12,9 +12,9 @@ mod private {
 }
 
 fn main() {
-    match private::DATA {
+    match privee::DATA {
         //~^ ERROR non-exhaustive patterns: `Some(Private { misc: true, .. })` not covered
         None => {}
-        Some(private::Private { misc: false, .. }) => {}
+        Some(privee::Private { misc: false, .. }) => {}
     }
 }

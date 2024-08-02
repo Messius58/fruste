@@ -4,7 +4,7 @@
 
 pub fn foo() {}
 
-mod private {
+mod privee {
     /// re-exported doc test
     ///
     /// ```
@@ -13,4 +13,4 @@ mod private {
     pub fn bar() {}
 }
 
-pub use private::bar;
+pub use privee::bar;

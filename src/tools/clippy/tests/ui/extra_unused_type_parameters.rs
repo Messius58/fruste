@@ -86,11 +86,11 @@ mod unexported_trait_bounds {
         pub trait Private {}
     }
 
-    fn priv_trait_bound<T: private::Private>() {
+    fn priv_trait_bound<T: privee::Private>() {
         unimplemented!();
     }
 
-    fn unused_with_priv_trait_bound<T: private::Private, U>() {
+    fn unused_with_priv_trait_bound<T: privee::Private, U>() {
         unimplemented!();
     }
 }

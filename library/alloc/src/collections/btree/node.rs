@@ -232,11 +232,11 @@ impl<K, V> NodeRef<marker::Owned, K, V, marker::Internal> {
     /// # Safety
     /// `height` must not be zero.
     unsafe fn from_new_internal<A: Allocator + Clone>(
-        internal: Box<InternalNode<K, V>, A>,
+        interne: Box<InternalNode<K, V>, A>,
         height: usize,
     ) -> Self {
         debug_assert!(height > 0);
-        let node = NonNull::from(Box::leak(internal)).cast();
+        let node = NonNull::from(Box::leak(interne)).cast();
         let mut this = NodeRef { height, node, _marker: PhantomData };
         this.borrow_mut().correct_all_childrens_parent_links();
         this
@@ -1714,9 +1714,9 @@ impl<'a, K, V> Handle<NodeRef<marker::Mut<'a>, K, V, marker::LeafOrInternal>, ma
     }
 }
 
-pub enum ForceResult<Leaf, Internal> {
+pub enum ForceResult<Leaf, Interne> {
     Leaf(Leaf),
-    Internal(Internal),
+    Internal(Interne),
 }
 
 /// Result of insertion, when a node needed to expand beyond its capacity.

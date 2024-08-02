@@ -4,8 +4,8 @@
 	shallow = true
 [submodule "src/tools/cargo"]
 	path = src/tools/cargo
-	url = https://github.com/rust-lang/cargo.git
-	shallow = true
+	url = git@github.com:Messius58/escargot.git
+	shallow = false
 [submodule "src/doc/reference"]
 	path = src/doc/reference
 	url = https://github.com/rust-lang/reference.git
@@ -20,8 +20,8 @@
 	shallow = true
 [submodule "library/stdarch"]
 	path = library/stdarch
-	url = https://github.com/rust-lang/stdarch.git
-	shallow = true
+	url = git@github.com:Messius58/archet.git
+	shallow = false
 [submodule "src/doc/rustc-dev-guide"]
 	path = src/doc/rustc-dev-guide
 	url = https://github.com/rust-lang/rustc-dev-guide.git
@@ -32,18 +32,18 @@
 	shallow = true
 [submodule "src/llvm-project"]
 	path = src/llvm-project
-	url = https://github.com/rust-lang/llvm-project.git
+	url = git@github.com:Messius58/llvm-project.git
 	branch = rustc/18.1-2024-05-19
-	shallow = true
+	shallow = false
 [submodule "src/doc/embedded-book"]
 	path = src/doc/embedded-book
 	url = https://github.com/rust-embedded/book.git
 	shallow = true
 [submodule "library/backtrace"]
 	path = library/backtrace
-	url = https://github.com/rust-lang/backtrace-rs.git
-	shallow = true
+	url = git@github.com:Messius58/guetteur.git
+	shallow = false
 [submodule "src/tools/rustc-perf"]
 	path = src/tools/rustc-perf
-	url = https://github.com/rust-lang/rustc-perf.git
-	shallow = true
+	url = git@github.com:Messius58/fruste-perf.git
+	shallow = false

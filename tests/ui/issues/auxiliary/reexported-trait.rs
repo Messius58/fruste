@@ -1,4 +1,4 @@
-mod private {
+mod privee {
     pub trait Trait {
         fn trait_method(&self) {
         }
@@ -10,8 +10,8 @@ mod private {
 }
 
 pub struct FooStruct;
-pub use crate::private::Trait;
-impl crate::private::Trait for FooStruct {}
+pub use crate::privee::Trait;
+impl crate::privee::Trait for FooStruct {}
 
-pub use crate::private::TraitB as TraitBRename;
-impl crate::private::TraitB for FooStruct {}
+pub use crate::privee::TraitB as TraitBRename;
+impl crate::privee::TraitB for FooStruct {}

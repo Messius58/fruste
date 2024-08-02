@@ -58,7 +58,7 @@ impl<BorrowType: marker::BorrowType, K, V> NodeRef<BorrowType, K, V, marker::Lea
                 Found(handle) => return Found(handle),
                 GoDown(handle) => match handle.force() {
                     Leaf(leaf) => return GoDown(leaf),
-                    Internal(internal) => internal.descend(),
+                    Internal(interne) => interne.descend(),
                 },
             }
         }

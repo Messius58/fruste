@@ -329,6 +329,7 @@ fn space_between(tt1: &TokenTree, tt2: &TokenTree) -> bool {
                 || *sym == kw::Fn
                 || *sym == kw::SelfUpper
                 || *sym == kw::Pub
+                //|| *sym == kw::Public
                 || matches!(is_raw, IdentIsRaw::Yes) =>
         {
             false

@@ -2,19 +2,19 @@
 
 #![feature(cfg_accessible)]
 
-mod private {
+mod privee {
     struct Struct;
     enum Enum{}
     union Union{_a:u8}
 }
 
-#[cfg_accessible(private::Struct)]
+#[cfg_accessible(privee::Struct)]
 const A: bool = true;
 
-#[cfg_accessible(private::Enum)]
+#[cfg_accessible(privee::Enum)]
 const A: bool = true;
 
-#[cfg_accessible(private::Union)]
+#[cfg_accessible(privee::Union)]
 const A: bool = true;
 
 const A: bool = false; // Will conflict if any of those is accessible

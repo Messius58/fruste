@@ -16,7 +16,7 @@ extern crate breakpoint_panic_handler;
 pub unsafe extern "ptx-kernel" fn top_kernel(a: *const u32, b: *mut u32) {
     // CHECK:      call.uni (retval0),
     // CHECK-NEXT: [[IMPL_FN]]
-    *b = deep::private::MyStruct::new(*a).square();
+    *b = deep::privee::MyStruct::new(*a).square();
 }
 
 pub mod deep {

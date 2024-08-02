@@ -7,7 +7,7 @@ pub trait Foo {
     //~^ ERROR  use of `async fn` in public traits is discouraged
 }
 
-mod private {
+mod privee {
     pub trait FooUnreachable {
         async fn not_send();
         // No warning

@@ -2,7 +2,7 @@
 
 #![crate_type = "lib"]
 
-mod private {
+mod privee {
     // CHECK: @FOO =
     #[no_mangle]
     pub static FOO: u32 = 3;

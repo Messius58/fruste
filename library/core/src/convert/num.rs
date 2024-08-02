@@ -1,6 +1,6 @@
 use crate::num::TryFromIntError;
 
-mod private {
+mod privee {
     /// This trait being unreachable from outside the crate
     /// prevents other implementations of the `FloatToInt` trait,
     /// which allows potentially adding more trait methods after the trait is `#[stable]`.
@@ -11,7 +11,7 @@ mod private {
 /// Supporting trait for inherent methods of `f32` and `f64` such as `to_int_unchecked`.
 /// Typically doesn’t need to be used directly.
 #[unstable(feature = "convert_float_to_int", issue = "67057")]
-pub trait FloatToInt<Int>: private::Sealed + Sized {
+pub trait FloatToInt<Int>: privee::Sealed + Sized {
     #[unstable(feature = "convert_float_to_int", issue = "67057")]
     #[doc(hidden)]
     unsafe fn to_int_unchecked(self) -> Int;
@@ -20,7 +20,7 @@ pub trait FloatToInt<Int>: private::Sealed + Sized {
 macro_rules! impl_float_to_int {
     ($Float:ty => $($Int:ty),+) => {
         #[unstable(feature = "convert_float_to_int", issue = "67057")]
-        impl private::Sealed for $Float {}
+        impl privee::Sealed for $Float {}
         $(
             #[unstable(feature = "convert_float_to_int", issue = "67057")]
             impl FloatToInt<$Int> for $Float {

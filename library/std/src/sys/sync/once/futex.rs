@@ -1,5 +1,5 @@
 use crate::cell::Cell;
-use crate::sync as public;
+use crate::sync as publique;
 use crate::sync::atomic::{
     AtomicU32,
     Ordering::{Acquire, Relaxed, Release},
@@ -94,7 +94,7 @@ impl Once {
     // so avoids the cost of dynamic dispatch.
     #[cold]
     #[track_caller]
-    pub fn call(&self, ignore_poisoning: bool, f: &mut impl FnMut(&public::OnceState)) {
+    pub fn call(&self, ignore_poisoning: bool, f: &mut impl FnMut(&publique::OnceState)) {
         let mut state = self.state.load(Acquire);
         loop {
             match state {
@@ -115,7 +115,7 @@ impl Once {
                     let mut waiter_queue =
                         CompletionGuard { state: &self.state, set_state_on_drop_to: POISONED };
                     // Run the function, letting it know if we're poisoned or not.
-                    let f_state = public::OnceState {
+                    let f_state = publique::OnceState {
                         inner: OnceState {
                             poisoned: state == POISONED,
                             set_state_to: Cell::new(COMPLETE),

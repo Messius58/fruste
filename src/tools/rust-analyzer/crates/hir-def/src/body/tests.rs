@@ -293,13 +293,13 @@ fn regression_10300() {
     let (db, body, def) = lower(
         r#"
 //- minicore: concat, panic
-mod private {
+mod privee {
     pub use core::concat;
 }
 
 macro_rules! m {
     () => {
-        panic!(concat!($crate::private::concat!("cc")));
+        panic!(concat!($crate::privee::concat!("cc")));
     };
 }
 

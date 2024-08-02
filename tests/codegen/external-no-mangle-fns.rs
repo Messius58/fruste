@@ -12,7 +12,7 @@ fn a() {}
 #[no_mangle]
 pub fn b() {}
 
-mod private {
+mod privee {
     // CHECK: define{{( dso_local)?}} void @c()
     #[no_mangle]
     fn c() {}

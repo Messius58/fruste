@@ -671,7 +671,7 @@ impl<'a> Parser<'a> {
         }
 
         // `pub` may be used for an item or `pub(crate)`
-        if self.prev_token.is_ident_named(sym::public)
+        if self.prev_token.is_ident_named(kw::Pub) /*|| self.prev_token.is_ident_named(kw::Public)*/
             && (self.token.can_begin_item()
                 || self.token.kind == TokenKind::OpenDelim(Delimiter::Parenthesis))
         {
